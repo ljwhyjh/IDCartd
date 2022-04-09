@@ -28,6 +28,7 @@ private:
     char Agency[31];
     char ExpireStart[9];
     char ExpireEnd[9];
+    char BmpPath[20]="./photo.bmp";
 
 
 private slots:

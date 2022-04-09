@@ -16,7 +16,7 @@
 #ifdef  _WIN32
 #define STDCALL  __stdcall
 #else
-#define STDCALL
+#define STDCALL  __stdcall
 #endif
 //#ifndef SDTAPI_
 //#define SDTAPI_
@@ -135,15 +135,12 @@ int SDTAPI_API STDCALL Routon_ReadAllForeignBaseInfos(char *EnName, char *Gender
 int SDTAPI_API STDCALL Routon_ReadForeignBaseInfosPhoto(char *enName, char *Gender, char *Code, char *Nation, char *cnName, char *BirthDay, char * ExpireStart,char* ExpireEnd,char* directory);
 int SDTAPI_API STDCALL Routon_ReadAllForeignBaseInfosPhoto(char *EnName, char *Gender, char *Code, char *Nation, char *CnName, char *BirthDay, char * ExpireStart,char* ExpireEnd,char* CardVertion,char* Agency,char* CardType, char* FutureItem,char* Directory);
 int SDTAPI_API STDCALL Routon_ReadAllGATBaseInfos( char *Name, char *Gender, char *FutureItem1, char*BirthDay, char * Address, char *Code, char *Agency, char* ExpireStart, char* ExpireEnd, char* PassID, char* SignCnt, char *FutureItem2, char *CardType, char *FutureItem3);
-int SDTAPI_API STDCALL Routon_ReadAllGATBaseInfosPhoto( char *Name, char *Gender, char *FutureItem1, char*BirthDay, char * Address, char *Code, char *Agency, char* ExpireStart, char* ExpireEnd, char* PassID, char* SignCnt, char *FutureItem2, char *CardType, char *FutureItem3, char* Directory);
 int SDTAPI_API STDCALL Routon_DecideFPIDCardType();
 int SDTAPI_API STDCALL ReadForeignBaseInfosFPPhoto(char * EnName, char * Gender, char * Code,char* Nation, char* CnName, char *BirthDay,char * ExpireStart,
 												   char* ExpireEnd, char* CardVertion,char* Agency,char* CardType, char* FutureItem,char * directory, unsigned char * pucFPMsg,unsigned int  *puiFPMsgLen);
 int SDTAPI_API STDCALL ReadGATBaseInfosFPPhoto(char * Name, char * Gender, char * FutureItem1,char *BirthDay, char * Address, char * Code,
 											   char *Agency, char * ExpireStart,char* ExpireEnd, char* PassID, char* SignCnt, char *FutureItem2, char *CardType, char *FutureItem3,char * directory, unsigned char * pucFPMsg,unsigned int  *puiFPMsgLen);
-int SDTAPI_API STDCALL Routon_ReadAllBaseInfos(char* Msg, char* HeadPhoto, char* FrontCopy, char* BackCopy, char* FingerPrint);
-//int SDTAPI_API STDCALL Routon_BeepLED(bool BeepON,bool LEDON,unsigned int duration);
-int SDTAPI_API STDCALL Routon_BeepLED(bool BeepON,bool GreenLED,bool RedLED,unsigned int duration);
+int SDTAPI_API STDCALL Routon_BeepLED(bool BeepON,bool LEDON,unsigned int duration);
 int SDTAPI_API STDCALL Routon_SetNewVersion(bool flag);
 int SDTAPI_API STDCALL Routon_IC_FindCard(void);
 int SDTAPI_API STDCALL Routon_IC_HL_ReadCardSN(char * SN);
@@ -317,39 +314,8 @@ SDTAPI_API int STDCALL SelectUSB(int index);
 SDTAPI_API int STDCALL CloseSDTandHIDComm(int index);
 SDTAPI_API int STDCALL InitSDTandHIDComm(int index);
 SDTAPI_API int STDCALL Routon_ReadAllTypeCardInfos(int port, char* pMsg, char *PhotoPath);
-SDTAPI_API int STDCALL iDR210HID_setTransWay(int transWay);
-
-//eID SDK
-SDTAPI_API int STDCALL eID_Authenticate ();
-SDTAPI_API int STDCALL eID_ReadBaseMsg(unsigned char* ucCHMsg, unsigned int* uiCHMsgLen, unsigned char* ucPHMsg, unsigned int* uiPHMsgLen, 
-									   unsigned char* ucFPMsg, unsigned int* uiFPMsgLen, unsigned char* ucAddAddress, unsigned int* uiAddAddressLen);
-SDTAPI_API int STDCALL eID_ReadBaseInfos(char * Name, char * Gender, char * Folk,char *BirthDay, char * Code, char * Address,
-										 char *Agency, char * ExpireStart,char* ExpireEnd,unsigned char* FPMsg, char* AddAddress, char* directory);
-
-//Î¢Ä£¿é SDK
-SDTAPI_API int STDCALL	SDT_ReadChkcode(int iPort,unsigned char * pucR1, char * pcSAMID, unsigned char * pucDataIn, unsigned char * pucT, unsigned char * pucChkcode, unsigned char * pucSign, int iIfOpen);
-SDTAPI_API int STDCALL	SDT_ReadChkcodePF(int iPort,unsigned char * pucR1, 
-										  char * pcSAMID, unsigned char * pucDataIn, unsigned char * pucT, \
-										  unsigned char * pucChkcode, unsigned char * pucHpf, unsigned char * pucSign, \
-										  unsigned char * pucPH, unsigned int * puiPHLen, unsigned char * pucFP, unsigned int * puiFPLen, int iIfOpen);
 
 
-SDTAPI_API int STDCALL  SDT_CheckIdencode(int iPort, unsigned char * pucR1, unsigned char ucNum, unsigned char * pucIdencode, unsigned int uiIdencodeLen, char * pcSAMID, unsigned char * pucDataIn,unsigned char * pucIndex,unsigned char * pucT, unsigned char * pucChkcode,unsigned char * pucSign,int iIfOpen);
-SDTAPI_API int STDCALL  SDT_CheckIdencodePF(int iPort, unsigned char * pucR1, unsigned char ucNum, unsigned char * pucIdencode, unsigned int uiIdencodeLen, \
-											char * pcSAMID, unsigned char * pucDataIn,unsigned char * pucIndex,unsigned char * pucT, \
-											unsigned char * pucChkcode,unsigned char * pucHpf,unsigned char * pucSign,
-											unsigned char * pucPH, unsigned int * puiPHLen, unsigned char * pucFP, unsigned int * puiFPLen, int iIfOpen);
-SDTAPI_API int STDCALL  SDT_CheckGender(int iPort, unsigned char * pucR1, unsigned char ucAddr, unsigned char * pucGender, char * pcSAMID, unsigned char * pucDataIn,unsigned char * pucRst, unsigned char * pucSign, int iIfOpen);
-SDTAPI_API int STDCALL  SDT_CheckBirthdate(int iPort, unsigned char * pucR1, unsigned char ucAddr, unsigned char * pucBirthdate, char * pcSAMID, unsigned char * pucDataIn, unsigned char *pucRst, unsigned char * pucSign, int iIfOpen);
-SDTAPI_API int STDCALL  GenerateIdentityCode(char* IDCode, unsigned char* identityCode);
-
-SDTAPI_API int STDCALL  Routon_SetProgramCode(char* ProgramCode);
-SDTAPI_API int STDCALL  Routon_GetProgramCode(char* ProgramCode);
-SDTAPI_API int STDCALL  Routon_CheckProgramCode(char* ProgramCode);
-
-SDTAPI_API int STDCALL  Routon_GetBaseMsg(int iPortID, unsigned char* pucCHMsg, unsigned int* puiCHMsgLen, unsigned char* pucPHMsg, 
-													 unsigned int *puiPHMsgLen, unsigned char* pucFPMsg, unsigned int* puiFPMsgLen, int iIfOpen);
-SDTAPI_API int STDCALL Routon_SetTransmissionChannel(bool isDualChanel);
 extern "C" int SDTAPI_API __cdecl Routon_Any_Function(const char* funcName, void* result, ...);
 
 #ifdef __cplusplus
