@@ -6,9 +6,16 @@
 class IDCard
 {
 public:
-    IDCard(char * Name, char * Gender, char * Folk,
-           char *BirthDay, char * Code, char * Address,char *Agency, char * ExpireStart,char* ExpireEnd);
+    IDCard();
     ~IDCard();
+    bool readCard(char * Name, char * Gender, char * Folk,
+                  char *BirthDay, char * Code, char * Address,
+                  char *Agency, char * ExpireStart,char* ExpireEnd,char * directory);
+
+private:
+    int retjinglun;
+    int iPort=1001;
+    int isCard,cardType;
 };
 
 #endif // IDCARD_H
